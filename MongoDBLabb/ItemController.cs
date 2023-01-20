@@ -36,11 +36,7 @@ namespace MongoDBLabb
                     io.MainMenu();
 
                     int input = int.Parse(io.ReadString());
-                    if (input < 1 || input > 6)
-                    {
-                        io.PrintString("Du valde inget av alternativen");
-                        continue;
-                    }
+                   
 
                     io.Clear();
 
@@ -74,6 +70,9 @@ namespace MongoDBLabb
                             break;
                         case 6:
                             io.Exit();
+                            break;
+
+                        default: io.PrintString("Du valde inget alternativ i listan.");
                             break;
                     }
                 }
