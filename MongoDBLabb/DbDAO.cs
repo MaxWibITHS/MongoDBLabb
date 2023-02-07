@@ -27,20 +27,10 @@ namespace MongoDBLabb
         {
             collection.InsertOne(item);  
         }
-        public void Delete(int Id)
+        public void Delete(int id)
         {
-            var filter = Builders<ItemModel>.Filter.Eq("artnr", Id);
-            var item = collection.Find(filter).FirstOrDefault();
-            if(item != null)
-            {
-                collection.DeleteOne(filter);
-                Console.WriteLine("Objekt borttaget.");
-            }
-            else
-            {
-                Console.WriteLine("Hittade inget objekt som matchade. Inget togs bort.");
-                return;
-            }
+            var filter = Builders<ItemModel>.Filter.Eq("artnr", id);
+            collection.DeleteOne(filter);
         }
         public List<ItemModel> ReadAll()
         {
@@ -55,16 +45,9 @@ namespace MongoDBLabb
         public void Update(int id, int newid)
         {
             var filter = Builders<ItemModel>.Filter.Eq("artnr", id);
-            var item = collection.Find(filter).FirstOrDefault();
-            if (item == null)
-            {
-                Console.WriteLine("Artikeln du ville uppdatera finns inte i listan");
-                return;
-            }
+                  
             var update = Builders<ItemModel>.Update.Set("qty", newid);
-            
-            collection.UpdateOne(filter, update);
-            Console.WriteLine("Artikeln uppdaterad.");
+            collection.UpdateOne(filter, update);   
         }
     }
 }
